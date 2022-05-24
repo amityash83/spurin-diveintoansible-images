@@ -1,9 +1,12 @@
-FROM spurin/container-systemd-sshd-ttyd:centos_8
+FROM spurin/container-systemd-sshd-ttyd:centos_stream9
 
-# Install editors and common utilities, openssl (needed for healthcheck script)
-RUN yum install -y vim nano \
+# The CentOS Stream image is lightweight, install Base
+#
+# Also install editors and common utilities, openssl (needed for healthcheck script)
+RUN yum groupinstall -y Base \
+    && yum install -y vim nano \
     openssl \
-    diffutils iputils git net-tools lsof unzip \
+    diffutils iproute iputils git net-tools lsof unzip \
     && yum clean all
 
 # Copy healthcheck script and service
