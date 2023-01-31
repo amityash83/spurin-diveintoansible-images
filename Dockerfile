@@ -7,6 +7,7 @@ RUN yum groupinstall -y Base \
     && yum install -y vim nano \
     openssl \
     diffutils iproute iputils git net-tools lsof unzip \
+    python3 \
     && yum clean all
 
 # Copy healthcheck script and service
