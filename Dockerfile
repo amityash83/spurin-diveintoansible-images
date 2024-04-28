@@ -15,8 +15,19 @@ COPY tests/* /tests/
 # Install pip requirements
 RUN pip3 install nose2 pytest docker parameterized gitpython
 
-# Patch the deprecated function to always fail rather than warn
-RUN sed -i '/^    def deprecated/a\ \ \ \ \ \ \ \ removed = True' /usr/local/lib/python3.10/dist-packages/ansible/utils/display.py
+# Use a modified display.py (specific to Ansible 9.5.1) - removed set to True to allow tests to run
+#    @proxy_display
+#    def deprecated(
+#        self,
+#        msg: str,
+#        version: str | None = None,
+#        removed: bool = True,
+#        date: str | None = None,
+#        collection_name: str | None = None,
+#    ) -> None:
+#        if not removed and not C.DEPRECATION_WARNINGS:
+#            return
+COPY display.py /usr/local/lib/python3.10/dist-packages/ansible/utils/display.py
 
 # Override CMD
 CMD /bin/startup.sh; nose2 -vs /tests
