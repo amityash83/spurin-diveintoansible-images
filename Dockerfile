@@ -20,3 +20,6 @@ RUN ln -s /lib/systemd/system/healthcheck.service /etc/systemd/system/multi-user
 # Setup login banner for guidance
 COPY login_banner /etc
 RUN sed -i '1i auth optional pam_echo.so file=/etc/login_banner' /etc/pam.d/login
+
+# Configure sshd to run on both Port 22 and Port 2222 on the CentOS hosts
+RUN echo -e "Port 22\nPort 2222" >> /etc/ssh/sshd_config
