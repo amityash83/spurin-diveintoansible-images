@@ -35,3 +35,6 @@ RUN perl -p -i -e "s/if not self.get_option\('host_key_checking'\):/if self.get_
 # Setup login banner for guidance
 COPY login_banner /etc
 RUN sed -i '1i auth optional pam_echo.so file=/etc/login_banner' /etc/pam.d/login
+
+# Add ssh keys util
+COPY setup_ssh_keys.sh /utils

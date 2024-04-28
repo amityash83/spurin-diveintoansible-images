@@ -11,3 +11,6 @@
 
        (or)  username=root password=password
 
+To automate ssh key setup run: /utils/setup_ssh_keys.sh
+Covered in 'Configuring SSH connectivity between hosts'
+
