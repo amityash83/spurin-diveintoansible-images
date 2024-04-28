@@ -31,3 +31,7 @@ RUN perl -p -i -e 's/default: ~\/.ansible\/cp/default: \/dev\/shm/g' $(python3 -
 
 # Temporary patch for https://github.com/ansible/ansible/issues/75167
 RUN perl -p -i -e "s/if not self.get_option\('host_key_checking'\):/if self.get_option\('host_key_checking'\) is False:/g" $(python3 -c 'import ansible;print(ansible.__file__)' | sed 's/__init__.py/plugins\/connection\/ssh.py/g')
+
+# Setup login banner for guidance
+COPY login_banner /etc
+RUN sed -i '1i auth optional pam_echo.so file=/etc/login_banner' /etc/pam.d/login
