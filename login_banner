@@ -14,3 +14,6 @@
 To automate ssh key setup run: /utils/setup_ssh_keys.sh
 Covered in 'Configuring SSH connectivity between hosts'
 
+Note: This banner is a recent course update to assist
+students and may not appear in the lecture videos
+
