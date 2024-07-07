@@ -15,7 +15,9 @@ COPY tests/* /tests/
 # Install pip requirements
 RUN pip3 install nose2 pytest docker parameterized gitpython
 
-# Use a modified display.py (specific to Ansible 9.5.1) - removed set to True to allow tests to run
+# docker cp ubuntu-c:/usr/local/lib/python3.10/dist-packages/ansible/utils/display.py
+#
+# Use a modified display.py (specific to Ansible 10.1.0) - removed set to True to allow tests to run
 #    @proxy_display
 #    def deprecated(
 #        self,
