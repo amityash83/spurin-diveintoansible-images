@@ -10,7 +10,7 @@
      Default username=ansible password=password
 
 To automate passwordless SSH keys between all hosts run: 
-/utils/setup_ssh_keys.sh
+/utils/setup_ssh_keys.sh  <use the password of password>
 
 SSH key setup is covered in the lesson 'Configuring SSH 
 connectivity between hosts'
