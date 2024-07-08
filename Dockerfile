@@ -17,7 +17,3 @@ RUN ln -s /lib/systemd/system/healthcheck.service /etc/systemd/system/multi-user
 
 # Friendly .vimrc starter
 COPY .vimrc /etc/skel
-
-# Setup login banner for guidance
-COPY login_banner /etc
-RUN sed -i '1i auth optional pam_echo.so file=/etc/login_banner' /etc/pam.d/login
