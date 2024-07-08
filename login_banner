@@ -9,10 +9,14 @@
 
      Default username=ansible password=password
 
-       (or)  username=root password=password
+To automate passwordless SSH keys between all hosts run: 
+/utils/setup_ssh_keys.sh
 
-To automate ssh key setup run: /utils/setup_ssh_keys.sh
-Covered in 'Configuring SSH connectivity between hosts'
+SSH key setup is covered in the lesson 'Configuring SSH 
+connectivity between hosts'
+
+To download the course examples repository run:
+git clone https://github.com/spurin/diveintoansible
 
 Note: This banner is a recent course update to assist
 students and may not appear in the lecture videos
