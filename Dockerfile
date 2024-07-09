@@ -39,5 +39,20 @@ RUN sed -i '/INTERPRETER_PYTHON:/,/default:/ s/default:.*/default: auto_silent/'
 COPY login_banner /etc
 RUN sed -i '1i auth optional pam_echo.so file=/etc/login_banner' /etc/pam.d/login
 
+# Fix for SSH for video consistency (SSH Hostkey entries)
+RUN sed -i \
+    -e '/^#\s*CheckHostIP\s*no\s*$/c\CheckHostIP yes' \
+    -e '/^#\s*CheckHostIP\s*yes\s*$/c\CheckHostIP yes' \
+    -e '/^CheckHostIP\s*no\s*$/c\CheckHostIP yes' \
+    -e '/^CheckHostIP\s*yes\s*$/c\CheckHostIP yes' /etc/ssh/ssh_config && \
+    if ! grep -q "^CheckHostIP\s*yes$" /etc/ssh/ssh_config; then \
+        echo 'CheckHostIP yes' >> /etc/ssh/ssh_config; \
+    fi && \
+    if ! grep -q "^HostKeyAlgorithms" /etc/ssh/ssh_config; then \
+        echo 'HostKeyAlgorithms=ecdsa-sha2-nistp256' >> /etc/ssh/ssh_config; \
+    else \
+        sed -i 's/^\s*#\?\s*HostKeyAlgorithms.*/HostKeyAlgorithms=ecdsa-sha2-nistp256/' /etc/ssh/ssh_config; \
+    fi
+
 # Add ssh keys util
 COPY setup_ssh_keys.sh /utils
