@@ -4,6 +4,9 @@
 cp /usr/share/nginx/html/index.html.TEMPLATE /usr/share/nginx/html/index.html
 
 # Overwrite, where desired based on env
+if [ ! -z "$PORT_OVERRIDE" ]; then
+   perl -p -i -e "s/localhost:1000/localhost:${PORT_OVERRIDE}/g" /usr/share/nginx/html/index.html
+fi
 if [ ! -z "$LOCALHOST_OVERRIDE" ]; then
    perl -p -i -e "s/http:\/\/localhost/http:\/\/${LOCALHOST_OVERRIDE}/g" /usr/share/nginx/html/index.html
 fi
