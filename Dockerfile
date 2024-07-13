@@ -54,5 +54,8 @@ RUN sed -i \
         sed -i 's/^\s*#\?\s*HostKeyAlgorithms.*/HostKeyAlgorithms=ecdsa-sha2-nistp256/' /etc/ssh/ssh_config; \
     fi
 
+# Add world writeable /shared area
+RUN mkdir /shared && chmod 777 /shared
+
 # Add ssh keys util
 COPY setup_ssh_keys.sh /utils
