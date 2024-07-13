@@ -21,5 +21,8 @@ RUN ln -s /lib/systemd/system/healthcheck.service /etc/systemd/system/multi-user
 # https://forums.rockylinux.org/t/how-do-i-silence-annoying-connection-message/4152
 RUN ln -sfn /dev/null /etc/motd.d/cockpit
 
+# Add world writeable /shared area
+RUN mkdir /shared && chmod 777 /shared
+
 # Copy update_sshd_ports.sh to /utils
 COPY update_sshd_ports.sh /utils
