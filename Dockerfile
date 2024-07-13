@@ -15,5 +15,8 @@ COPY healthcheck.service /lib/systemd/system/healthcheck.service
 # Enable healthcheck service
 RUN ln -s /lib/systemd/system/healthcheck.service /etc/systemd/system/multi-user.target.wants/healthcheck.service
 
+# Add world writeable /shared area
+RUN mkdir /shared && chmod 777 /shared
+
 # Friendly .vimrc starter
 COPY .vimrc /etc/skel
