@@ -9,6 +9,13 @@
 
      Default username=ansible password=password
 
+Copying and Pasting to and from the Terminals will vary
+depending on your system -
+
+Windows = Copy: Ctrl + Shift + c | Paste: Ctrl + Shift + v
+Linux = Copy: Ctrl + Shift + c | Paste: Ctrl + Shift + v
+Mac OS X = Copy: CMD + c | Paste: CMD + v
+
 To automate passwordless SSH keys between all hosts run: 
 /utils/setup_ssh_keys.sh  <use the password of password>
 
